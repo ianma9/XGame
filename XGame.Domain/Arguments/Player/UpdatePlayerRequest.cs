@@ -1,14 +1,13 @@
-﻿using XGame.Domain.Interfaces.Arguments;
-using XGame.Domain.ValueObjects;
+﻿using System;
 
 namespace XGame.Domain.Arguments.Player
 {
-    public class AddPlayerRequest : IRequest
+    public class UpdatePlayerRequest
     {
+
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
-        
     }
 }
