@@ -5,8 +5,14 @@ using XGame.Domain.ValueObjects;
 
 namespace XGame.Domain.Entities
 {
-    public class Player : Notifiable
+    public class Player : EntityBase
     {
+        
+        public Name Name { get; private set; }
+        public Email Email { get; private set; }
+        public string Password { get; private set; }
+        public EnumStatusPlayer Status { get; private set; }
+
         public Player(Email email, string password)
         {
             Email = email;
@@ -19,7 +25,6 @@ namespace XGame.Domain.Entities
 
         public Player(Name name, Email email, string password)
         {
-            Id = Guid.NewGuid();
             Name = name;
             Email = email;
             Password = password;
@@ -33,13 +38,7 @@ namespace XGame.Domain.Entities
             AddNotifications(name, email);
         }
 
-        public Guid Id { get; private set; }
-        public Name Name { get; private set; }
-        public Email Email { get; private set; }
-        public string Password { get; private set; }
-        public EnumStatusPlayer Status { get; private set; }
-
-        public void ChangePlayer(Name name, Email email, EnumStatusPlayer status)
+        public void UpdatePlayer(Name name, Email email, EnumStatusPlayer status)
         {
             Name = name;
             Email = email;

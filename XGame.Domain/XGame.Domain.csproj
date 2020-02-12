@@ -183,6 +183,7 @@
     <Compile Include="Arguments\Player\PlayerAuthenticationRequest.cs" />
     <Compile Include="Arguments\Player\PlayerAuthenticationResponse.cs" />
     <Compile Include="Arguments\Player\PlayerResponse.cs" />
+    <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GamePlatform.cs" />
     <Compile Include="Entities\MyGames.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Enums\EnumStatusPlayer.cs" />
     <Compile Include="Interfaces\Arguments\IRequest.cs" />
     <Compile Include="Interfaces\Arguments\IResponse.cs" />
+    <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryPlayer.cs" />
     <Compile Include="Interfaces\Services\IServicePlatform.cs" />
     <Compile Include="Interfaces\Services\IServicePlayer.cs" />

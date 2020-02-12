@@ -36,7 +36,7 @@ namespace XGame.Domain.Services
                 return null;
             }
 
-            player = _repositoryPlayer.AddPlayer(player);
+            player = _repositoryPlayer.Add(player);
 
             return (AddPlayerResponse) player;
         }
@@ -48,7 +48,7 @@ namespace XGame.Domain.Services
                 AddNotification("PlayerAuthenticationRequest", string.Format(Message.X0_IS_REQUIRED, "PlayerAuthenticationRequest"));
             }
 
-            Player player = _repositoryPlayer.GetPlayerById(request.Id);
+            Player player = _repositoryPlayer.GetById(request.Id);
 
             if (player == null)
             {
@@ -58,7 +58,7 @@ namespace XGame.Domain.Services
             var name = new Name(request.FirstName, request.LastName);
             var email = new Email(request.Email);
 
-            player.ChangePlayer(name, email, player.Status);
+            player.UpdatePlayer(name, email, player.Status);
 
             AddNotifications(player);
 
@@ -67,7 +67,6 @@ namespace XGame.Domain.Services
                 return null;
             }
 
-            _repositoryPlayer.UpdatePlayer(player);
             return (UpdatePlayerResponse) player;
         }
 
@@ -78,17 +77,18 @@ namespace XGame.Domain.Services
                 AddNotification("PlayerAuthenticationRequest", string.Format(Message.X0_IS_REQUIRED, "PlayerAuthenticationRequest"));
             }
             
-            var email = new Email("ian@gmail.com");
-            var player = new Player(email, "222554454");
+            var email = new Email(request.Email);
+            var player = new Player(email, request.Password);
 
-            AddNotifications(player);
+            AddNotifications(player, email);
 
             if (player.IsInvalid())
             {
                 return null;
             }
 
-           // player = _repositoryPlayer.PlayerAuthentication(player.Email.Address, player.Password);
+            player = _repositoryPlayer.GetBy(x => x.Email.Address == player.Email.Address,
+                x => x.Password == player.Password);
             
 
             return (PlayerAuthenticationResponse) player;
@@ -96,7 +96,7 @@ namespace XGame.Domain.Services
    
         public IEnumerable<PlayerResponse> ListPlayer()
         {
-            return _repositoryPlayer.ListPlayer()
+            return _repositoryPlayer.List()
                 .ToList()
                 .Select(player => (PlayerResponse )player).ToList();
         }

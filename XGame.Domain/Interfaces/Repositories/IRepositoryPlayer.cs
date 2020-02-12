@@ -3,15 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using XGame.Domain.Arguments.Player;
 using XGame.Domain.Entities;
+using XGame.Domain.Interfaces.Repositories.Base;
 
 namespace XGame.Domain.Interfaces.Repositories
 {
-    public interface IRepositoryPlayer
+    public interface IRepositoryPlayer : IRepositoryBase<Player, Guid>
     {
-        Player PlayerAuthentication(string email, string password);
-        Player AddPlayer(Player player);
-        IEnumerable<Player> ListPlayer();
-        Player GetPlayerById(Guid id);
-        void UpdatePlayer(Player player);
+
     }
 }
