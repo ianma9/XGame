@@ -13,6 +13,10 @@ namespace XGame.Domain.Entities
         public string Password { get; private set; }
         public EnumStatusPlayer Status { get; private set; }
 
+        public Player()
+        {
+
+        }
         public Player(Email email, string password)
         {
             Email = email;

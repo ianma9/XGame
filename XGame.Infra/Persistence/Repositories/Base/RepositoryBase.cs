@@ -21,7 +21,7 @@ namespace XGame.Infra.Persistence.Repositories.Base
         {
             _context = context;
         }
-        public TEntity Add(TEntity entity)
+        public TEntity AddEntity(TEntity entity)
         {
             return _context.Set<TEntity>().Add(entity);
         }

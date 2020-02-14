@@ -198,6 +198,10 @@
       <Project>{7adf35bd-bf3d-4b62-9b6c-1bcddbc424ae}</Project>
       <Name>XGame.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XGame.Infra\XGame.Infra.csproj">
+      <Project>{29aea808-0759-4235-84bd-ed6400961172}</Project>
+      <Name>XGame.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

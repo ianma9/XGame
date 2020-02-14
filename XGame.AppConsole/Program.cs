@@ -31,7 +31,7 @@ namespace XGame.AppConsole
                 Password = "ianma91234"
             };
 
-            var Addresponse = service.AddPlayer(addRequest);
+            // var Addresponse = service.AddPlayer(addRequest);
 
             var response = service.PlayerAuthentication(request);
 

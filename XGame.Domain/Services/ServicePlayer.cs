@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using XGame.Domain.Arguments.Player;
 using XGame.Domain.Entities;
+using XGame.Domain.Interfaces.Arguments.Base;
 using XGame.Domain.Interfaces.Repositories;
 using XGame.Domain.Interfaces.Services;
 using XGame.Domain.Resources;
@@ -31,12 +32,19 @@ namespace XGame.Domain.Services
 
             Player player = new Player(name, email, request.Password);
 
+            AddNotifications(name, email);
+
+            if (_repositoryPlayer.Exist(x => x.Email.Address == request.Email))
+            {
+                AddNotification("Email", "This email already exist!");
+            }
+
             if (this.IsInvalid())
             {
                 return null;
             }
 
-            player = _repositoryPlayer.Add(player);
+            player = _repositoryPlayer.AddEntity(player);
 
             return (AddPlayerResponse) player;
         }
@@ -78,7 +86,7 @@ namespace XGame.Domain.Services
             }
             
             var email = new Email(request.Email);
-            var player = new Player(email, request.Password);
+            Player player = new Player(email, request.Password);
 
             AddNotifications(player, email);
 
@@ -87,8 +95,8 @@ namespace XGame.Domain.Services
                 return null;
             }
 
-            player = _repositoryPlayer.GetBy(x => x.Email.Address == player.Email.Address,
-                x => x.Password == player.Password);
+            player = _repositoryPlayer.GetBy(x => x.Email.Address == player.Email.Address &&
+               x.Password == player.Password);
             
 
             return (PlayerAuthenticationResponse) player;
@@ -99,6 +107,21 @@ namespace XGame.Domain.Services
             return _repositoryPlayer.List()
                 .ToList()
                 .Select(player => (PlayerResponse )player).ToList();
+        }
+
+        public ResponseBase RemovePlayer(Guid id)
+        {
+            Player player = _repositoryPlayer.GetById(id);
+
+            if (player == null)
+            {
+                AddNotification("Id", "Não encontrado!");
+                return null;
+            }
+
+            _repositoryPlayer.Remove(player);
+
+            return new ResponseBase();
         }
     }
 }

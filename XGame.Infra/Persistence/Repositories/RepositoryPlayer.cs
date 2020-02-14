@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using XGame.Domain.Entities;
 using XGame.Domain.Interfaces.Repositories;
 using XGame.Infra.Persistence.Repositories.Base;

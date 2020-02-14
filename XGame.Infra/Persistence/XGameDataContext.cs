@@ -12,6 +12,7 @@ namespace XGame.Infra.Persistence
         }
 
         public DbSet<Player> Players { get; set; }
+        public DbSet<Game> Games { get; set; } 
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

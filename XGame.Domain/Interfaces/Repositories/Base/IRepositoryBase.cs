@@ -25,7 +25,7 @@ namespace XGame.Domain.Interfaces.Repositories.Base
 
         TEntity GetById(TId id, params Expression<Func<TEntity, object>>[] includeProperties);
 
-        TEntity Add(TEntity entity);
+        TEntity AddEntity(TEntity entity);
 
         TEntity Edit(TEntity entity);
 
